@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - SIKEN9</title>
+    <link rel="icon" type="image/png" href="asset/Icon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        /* Login Screen */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .login-box {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .login-box h1 {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .login-box p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .btn-login {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+        
+        /* Admin Dashboard */
+        .admin-container {
+            display: none;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .admin-container.show {
+            display: block;
+        }
+        
+        .admin-header {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .admin-header h1 {
+            color: #333;
+        }
+        
+        .btn-logout {
+            padding: 10px 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .btn-logout:hover {
+            background: #c0392b;
+        }
+        
+        .admin-actions {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .btn-add {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1em;
+        }
+        
+        .btn-add:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+        }
+        
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .stat-icon {
+            font-size: 2.5em;
+        }
+        
+        .stat-info {
+            flex: 1;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+        
+        .stat-value {
+            color: #333;
+            font-size: 2em;
+            font-weight: 700;
+        }
+        
+        .stat-aktif {
+            border-left: 5px solid #4caf50;
+        }
+        
+        .stat-arsip {
+            border-left: 5px solid #9e9e9e;
+        }
+        
+        .stat-total {
+            border-left: 5px solid #2196f3;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            background: #f5f5f5;
+            color: #666;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover {
+            background: #e8e8e8;
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #667eea;
+        }
+        
+        .data-table {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .btn-edit, .btn-delete {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+            font-size: 0.9em;
+        }
+        
+        .btn-edit {
+            background: #3498db;
+            color: white;
+        }
+        
+        .btn-delete {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .modal.show {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .modal-header h2 {
+            color: #333;
+        }
+        
+        .btn-close {
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #999;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .form-grid-full {
+            grid-column: 1 / -1;
+        }
+        
+        .btn-save {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        .btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(46, 204, 113, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .admin-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .admin-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-buttons {
+                flex-direction: column;
+            }
+            
+            .filter-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-container">
+        <div class="login-box">
+            <img src="asset/Icon.png" alt="Logo" style="width: 80px; display: block; margin: 0 auto 20px;">
+            <h1>Admin Panel</h1>
+            <p>SIKEN9 - KUA Ambulu</p>
+            
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn-login">Login</button>
+                <div id="loginError" class="error-message"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminDashboard" class="admin-container">
+        <div class="admin-header">
+            <div>
+                <h1>Admin Panel SIKEN9</h1>
+                <p style="color: #666; margin-top: 5px;">Kelola Data Pengumuman Kehendak Nikah</p>
+            </div>
+            <button class="btn-logout" onclick="handleLogout()">Logout</button>
+        </div>
+        
+        <div class="admin-stats">
+            <div class="stat-card stat-aktif">
+                <div class="stat-icon">✅</div>
+                <div class="stat-info">
+                    <div class="stat-label">Pengumuman Aktif</div>
+                    <div class="stat-value" id="statsAktif">0</div>
+                </div>
+            </div>
+            <div class="stat-card stat-arsip">
+                <div class="stat-icon">📦</div>
+                <div class="stat-info">
+                    <div class="stat-label">Arsip (Selesai)</div>
+                    <div class="stat-value" id="statsArsip">0</div>
+                </div>
+            </div>
+            <div class="stat-card stat-total">
+                <div class="stat-icon">📊</div>
+                <div class="stat-info">
+                    <div class="stat-label">Total Semua</div>
+                    <div class="stat-value" id="statsTotal">0</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="admin-actions">
+            <button class="btn-add" onclick="openAddModal()">+ Tambah Pengumuman Baru</button>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" id="filter-aktif" onclick="changeFilter('aktif')">
+                    ✅ Aktif
+                </button>
+                <button class="filter-btn" id="filter-arsip" onclick="changeFilter('arsip')">
+                    📦 Arsip
+                </button>
+                <button class="filter-btn" id="filter-semua" onclick="changeFilter('semua')">
+                    📊 Semua
+                </button>
+            </div>
+        </div>
+        
+        <div class="data-table">
+            <h3 style="margin-bottom: 15px;">Daftar Pengumuman</h3>
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th>No. Pemeriksaan</th>
+                        <th>Calon Laki-Laki</th>
+                        <th>Calon Perempuan</th>
+                        <th>Tanggal Nikah</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr>
+                        <td colspan="6" style="text-align: center;">Memuat data...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal Add/Edit -->
+    <div id="formModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Tambah Pengumuman</h2>
+                <button class="btn-close" onclick="closeModal()">×</button>
+            </div>
+            
+            <form id="dataForm" onsubmit="handleSubmit(event)">
+                <input type="hidden" id="editId">
+                
+                <div class="form-grid">
+                    <div class="form-group form-grid-full">
+                        <label>Nomor Pemeriksaan</label>
+                        <input type="text" id="nomorPemeriksaan" required>
+                    </div>
+                    
+                    <div class="form-group form-grid-full" style="background: #e8f5e9; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #2e7d32; margin-bottom: 10px;">👨 Data Calon Pengantin Laki-Laki</h4>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" id="namaLakiLaki" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Bin</label>
+                        <input type="text" id="binLakiLaki" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>TTL</label>
+                        <input type="text" id="ttlLakiLaki" placeholder="Jakarta, 1 Januari 1990" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Kewarganegaraan</label>
+                        <input type="text" id="kewarganegaraanLakiLaki" value="WNI" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Agama</label>
+                        <input type="text" id="agamaLakiLaki" value="Islam" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Pekerjaan</label>
+                        <input type="text" id="pekerjaanLakiLaki" required>
+                    </div>
+                    
+                    <div class="form-group form-grid-full">
+                        <label>Alamat</label>
+                        <input type="text" id="alamatLakiLaki" required>
+                    </div>
+                    
+                    <div class="form-group form-grid-full" style="background: #fce4ec; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #c2185b; margin-bottom: 10px;">👩 Data Calon Pengantin Perempuan</h4>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" id="namaPerempuan" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Binti</label>
+                        <input type="text" id="bintiPerempuan" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>TTL</label>
+                        <input type="text" id="ttlPerempuan" placeholder="Jakarta, 1 Januari 1995" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Kewarganegaraan</label>
+                        <input type="text" id="kewarganegaraanPerempuan" value="WNI" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Agama</label>
+                        <input type="text" id="agamaPerempuan" value="Islam" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Pekerjaan</label>
+                        <input type="text" id="pekerjaanPerempuan" required>
+                    </div>
+                    
+                    <div class="form-group form-grid-full">
+                        <label>Alamat</label>
+                        <input type="text" id="alamatPerempuan" required>
+                    </div>
+                    
+                    <div class="form-group form-grid-full" style="background: #e3f2fd; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #1565c0; margin-bottom: 10px;">👤 Data Wali Nikah</h4>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Jenis Wali</label>
+                        <select id="jenisWali" onchange="toggleWaliFields()" required>
+                            <option value="Nasab">Nasab</option>
+                            <option value="Hakim">Hakim</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="hubunganWaliGroup">
+                        <label>Hubungan Wali</label>
+                        <input type="text" id="hubunganWali" placeholder="Ayah Kandung">
+                    </div>
+                    
+                    <div class="form-group" id="sebabWaliGroup" style="display: none;">
+                        <label>Sebab Wali</label>
+                        <input type="text" id="sebabWali">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Nama Wali</label>
+                        <input type="text" id="namaWali" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Bin</label>
+                        <input type="text" id="binWali" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>TTL</label>
+                        <input type="text" id="ttlWali" placeholder="Jakarta, 1 Januari 1960" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Kewarganegaraan</label>
+                        <input type="text" id="kewarganegaraanWali" value="WNI" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Agama</label>
+                        <input type="text" id="agamaWali" value="Islam" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Pekerjaan</label>
+                        <input type="text" id="pekerjaanWali" required>
+                    </div>
+                    
+                    <div class="form-group form-grid-full">
+                        <label>Alamat Wali</label>
+                        <input type="text" id="alamatWali" required>
+                    </div>
+                    
+                    <div class="form-group form-grid-full" style="background: #fff3e0; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #e65100; margin-bottom: 10px;">📅 Jadwal Akad Nikah</h4>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Hari</label>
+                        <select id="hariNikah" required>
+                            <option value="Senin">Senin</option>
+                            <option value="Selasa">Selasa</option>
+                            <option value="Rabu">Rabu</option>
+                            <option value="Kamis">Kamis</option>
+                            <option value="Jumat">Jumat</option>
+                            <option value="Sabtu">Sabtu</option>
+                            <option value="Minggu">Minggu</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Tanggal</label>
+                        <input type="text" id="tanggalNikah" placeholder="1 Januari 2025" required>
+                    </div>
+                    
+                    <div class="form-group form-grid-full">
+                        <label>Tempat Akad</label>
+                        <input type="text" id="tempatNikah" required>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn-save">Simpan Data</button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="js/admin-script.js"></script>
+</body>
+</html>

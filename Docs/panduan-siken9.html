@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Penggunaan SIKEN9 - KUA Ambulu</title>
+    <link rel="icon" type="image/png" href="../asset/Icon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 50%, #43a047 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 15px;
+            background: white;
+            border-radius: 50%;
+            padding: 10px;
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        /* Accordion Styles */
+        .accordion {
+            margin-bottom: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .accordion:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .accordion-header {
+            background: linear-gradient(135deg, #66bb6a 0%, #81c784 100%);
+            color: white;
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, #43a047 0%, #66bb6a 100%);
+        }
+
+        .accordion-header.active {
+            background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+        }
+
+        .accordion-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .accordion-icon {
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-header.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            background: white;
+        }
+
+        .accordion-content.active {
+            max-height: 10000px;
+            padding: 30px 25px;
+            transition: max-height 0.5s ease-in, padding 0.4s ease-in;
+        }
+
+        .section h3 {
+            color: #2e7d32;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 2px solid #e8f5e9;
+            padding-bottom: 10px;
+        }
+
+        .section h4 {
+            color: #43a047;
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+        }
+
+        .section p {
+            color: #555;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .feature-box {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #4caf50;
+        }
+
+        .feature-box h4 {
+            color: #1b5e20;
+            margin-bottom: 10px;
+        }
+
+        .feature-list {
+            margin-left: 20px;
+        }
+
+        .feature-list li {
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .step-box {
+            background: #fff3e0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 5px solid #ff9800;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #ff9800;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .warning-box {
+            background: #fff9c4;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #fbc02d;
+        }
+
+        .warning-box strong {
+            color: #f57c00;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #2196f3;
+        }
+
+        .info-box strong {
+            color: #1976d2;
+        }
+
+        .privacy-box {
+            background: #f3e5f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #9c27b0;
+        }
+
+        .privacy-box strong {
+            color: #7b1fa2;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #66bb6a 0%, #81c784 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin: 10px 5px;
+            box-shadow: 0 3px 10px rgba(102, 187, 106, 0.3);
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #43a047 0%, #66bb6a 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 187, 106, 0.4);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .footer a {
+            color: #81c784;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background: linear-gradient(135deg, #66bb6a 0%, #81c784 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+            color: #555;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #d32f2f;
+            font-family: 'Courier New', monospace;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        ul li {
+            margin: 8px 0;
+            color: #555;
+        }
+
+        .highlight {
+            background: #ffeb3b;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #66bb6a 0%, #81c784 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            font-size: 1.5em;
+            text-decoration: none;
+            z-index: 1000;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .intro-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #43a047;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        .intro-box h2 {
+            color: #1b5e20;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+        }
+
+        .intro-box p {
+            color: #2e7d32;
+            font-size: 1.05em;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.6em;
+            }
+
+            .content {
+                padding: 20px 15px;
+            }
+
+            .accordion-title {
+                font-size: 1.1em;
+            }
+
+            .accordion-header {
+                padding: 15px 18px;
+            }
+
+            table {
+                font-size: 0.9em;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <img src="../asset/Icon.png" alt="Logo KUA Ambulu">
+            <h1>📖 PANDUAN PENGGUNAAN SIKEN9</h1>
+            <p>Sistem Informasi Kehendak Nikah</p>
+            <p>Kantor Urusan Agama Kecamatan Ambulu</p>
+            <div class="version-badge">Version 2.3</div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Intro -->
+            <div class="intro-box">
+                <h2>👋 Selamat Datang!</h2>
+                <p>
+                    Panduan ini dirancang untuk membantu Anda memahami dan menggunakan <strong>SIKEN9</strong> dengan mudah. 
+                    Klik pada judul section di bawah untuk membuka konten yang Anda butuhkan.
+                </p>
+            </div>
+
+            <!-- Accordion 1: Tentang SIKEN9 -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <div class="accordion-title">
+                        📱 1. Tentang SIKEN9
+                    </div>
+                    <div class="accordion-icon">▼</div>
+                </div>
+                <div class="accordion-content">
+                    <p>
+                        <strong>SIKEN9 (Sistem Informasi Kehendak Nikah)</strong> adalah aplikasi web digital yang dikembangkan oleh KUA Kecamatan Ambulu untuk memudahkan akses masyarakat terhadap informasi pengumuman kehendak nikah sesuai dengan <strong>Peraturan Menteri Agama (PMA) No. 30 Tahun 2024</strong>.
+                    </p>
+
+                    <div class="feature-box">
+                        <h4>🎯 Tujuan SIKEN9</h4>
+                        <ul>
+                            <li>Meningkatkan transparansi pelayanan pernikahan</li>
+                            <li>Memudahkan masyarakat mengakses informasi pengumuman nikah</li>
+                            <li>Melindungi data pribadi dengan sistem privacy-first</li>
+                            <li>Mempercepat proses verifikasi dan konfirmasi data</li>
+                            <li>Mengurangi penggunaan papan pengumuman fisik</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>ℹ️ Informasi Penting:</strong>
+                        <ul>
+                            <li><strong>Website:</strong> <a href="https://kuaambulu.github.io/SIKEN9/index.html" target="_blank">kuaambulu.github.io/SIKEN9</a></li>
+                            <li><strong>Platform:</strong> Web-based (dapat diakses dari browser)</li>
+                            <li><strong>Akses:</strong> 24/7 dari mana saja</li>
+                            <li><strong>Gratis:</strong> Tidak ada biaya untuk mengakses</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion 2: Fitur Utama -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <div class="accordion-title">
+                        ✨ 2. Fitur Utama SIKEN9
+                    </div>
+                    <div class="accordion-icon">▼</div>
+                </div>
+                <div class="accordion-content">
+                    <h3>🔍 2.1 Pencarian Canggih</h3>
+                    <div class="feature-box">
+                        <p>Sistem pencarian real-time yang memungkinkan Anda mencari pengumuman berdasarkan:</p>
+                        <ul>
+                            <li>✅ <strong>Nama Calon Pengantin Laki-Laki</strong></li>
+                            <li>✅ <strong>Nama Calon Pengantin Perempuan</strong></li>
+                            <li>✅ <strong>Tanggal Akad Nikah</strong> (contoh: "15 Desember")</li>
+                            <li>✅ <strong>Hari Akad Nikah</strong> (contoh: "Sabtu")</li>
+                            <li>❌ Nomor pemeriksaan <strong>TIDAK</strong> dapat dicari (untuk privasi)</li>
+                        </ul>
+                    </div>
+
+                    <h3>🔐 2.2 Smart Privacy Protection</h3>
+                    <div class="privacy-box">
+                        <strong>🛡️ Sistem Keamanan Data TTL (Tempat Tanggal Lahir):</strong>
+                        <ul>
+                            <li><strong>Default Hidden:</strong> TTL disembunyikan untuk semua pengunjung</li>
+                            <li><strong>Auto-Show:</strong> TTL hanya muncul saat pencarian nama lengkap (exact match)</li>
+                            <li><strong>Indicator:</strong> Badge "🔒 TTL Ditampilkan" muncul saat data visible</li>
+                            <li><strong>Protection:</strong> Melindungi data sensitif dari akses tidak berkepentingan</li>
+                        </ul>
+                    </div>
+
+                    <h3>⏰ 2.3 Countdown Badge</h3>
+                    <p>Setiap pengumuman dilengkapi dengan badge waktu yang menunjukkan:</p>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Badge</th>
+                                    <th>Warna</th>
+                                    <th>Keterangan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>🔔 HARI INI</td>
+                                    <td style="color: #e53935;">Merah</td>
+                                    <td>Akad nikah berlangsung hari ini</td>
+                                </tr>
+                                <tr>
+                                    <td>⏰ Besok</td>
+                                    <td style="color: #ff7043;">Orange</td>
+                                    <td>Akad nikah besok</td>
+                                </tr>
+                                <tr>
+                                    <td>⏱️ 2-7 Hari Lagi</td>
+                                    <td style="color: #ffa726;">Orange Terang</td>
+                                    <td>Akad dalam minggu ini</td>
+                                </tr>
+                                <tr>
+                                    <td>📅 8-30 Hari Lagi</td>
+                                    <td style="color: #66bb6a;">Hijau</td>
+                                    <td>Akad dalam bulan ini</td>
+                                </tr>
+                                <tr>
+                                    <td>📆 31+ Hari Lagi</td>
+                                    <td style="color: #42a5f5;">Biru</td>
+                                    <td>Akad lebih dari sebulan</td>
+                                </tr>
+                                <tr>
+                                    <td>Sudah Dilaksanakan</td>
+                                    <td style="color: #9e9e9e;">Abu-abu</td>
+                                    <td>Akad sudah selesai</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>📱 2.4 Responsive Design</h3>
+                    <div class="feature-box">
+                        <p>SIKEN9 dapat diakses optimal dari berbagai perangkat:</p>
+                        <ul>
+                            <li>💻 <strong>Desktop:</strong> Tampilan 3 kolom (3 kartu per halaman)</li>
+                            <li>📱 <strong>Tablet:</strong> Tampilan 2 kolom (2 kartu per halaman)</li>
+                            <li>📲 <strong>Mobile:</strong> Tampilan 1 kolom (1 kartu per halaman)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion 3: Panduan Masyarakat -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <div class="accordion-title">
+                        👥 3. Panduan untuk Masyarakat
+                    </div>
+                    <div class="accordion-icon">▼</div>
+                </div>
+                <div class="accordion-content">
+                    <h3>🌐 3.1 Mengakses SIKEN9</h3>
+                    <div class="step-box">
+                        <p><span class="step-number">1</span> Buka browser (Chrome, Firefox, Safari, Edge)</p>
+                    </div>
+                    <div class="step-box">
+                        <p><span class="step-number">2</span> Ketik URL: <code>kuaambulu.github.io/SIKEN9/index.html</code></p>
+                    </div>
+                    <div class="step-box">
+                        <p><span class="step-number">3</span> Website akan terbuka dan menampilkan semua pengumuman aktif</p>
+                    </div>
+
+                    <h3>🔍 3.2 Mencari Pengumuman</h3>
+                    <div class="step-box">
+                        <p><span class="step-number">1</span> Temukan <strong>kolom pencarian</strong> di bagian atas halaman</p>
+                    </div>
+                    <div class="step-box">
+                        <p><span class="step-number">2</span> Ketik salah satu dari:</p>
+                        <ul>
+                            <li>Nama calon pengantin (contoh: "Ahmad Fauzi")</li>
+                            <li>Tanggal akad (contoh: "15 Desember")</li>
+                            <li>Hari akad (contoh: "Sabtu")</li>
+                        </ul>
+                    </div>
+                    <div class="step-box">
+                        <p><span class="step-number">3</span> Hasil akan muncul <strong>secara real-time</strong> saat Anda mengetik</p>
+                    </div>
+
+                    <div class="warning-box">
+                        <strong>⚠️ Catatan Penting:</strong>
+                        <ul>
+                            <li>Pencarian <strong>tidak case-sensitive</strong> (huruf besar/kecil tidak berpengaruh)</li>
+                            <li><strong>Nomor pemeriksaan TIDAK dapat dicari</strong> untuk melindungi privasi</li>
+                            <li>Gunakan <strong>nama lengkap</strong> untuk hasil lebih akurat</li>
+                        </ul>
+                    </div>
+
+                    <h3>👁️ 3.3 Melihat Data TTL</h3>
+                    <div class="privacy-box">
+                        <p>Untuk melindungi privasi, <strong>TTL disembunyikan secara default</strong>. Untuk melihat TTL:</p>
+                        <ul>
+                            <li><strong>Ketik nama lengkap</strong> calon pengantin di kolom pencarian</li>
+                            <li>Nama harus <strong>exact match</strong> (persis sama) dengan data</li>
+                            <li>TTL akan <strong>otomatis muncul</strong> jika nama cocok</li>
+                            <li>Badge <strong>"🔒 TTL Ditampilkan"</strong> akan muncul di bagian atas</li>
+                        </ul>
+                    </div>
+
+                    <h3>⚠️ 3.4 Melaporkan Keberatan</h3>
+                    <div class="info-box">
+                        <p>Jika Anda memiliki keberatan atau ingin melaporkan kesalahan data:</p>
+                        <ul>
+                            <li>Scroll ke bagian bawah halaman</li>
+                            <li>Klik tombol <strong>"Hubungi WhatsApp KUA Ambulu"</strong></li>
+                            <li>Sampaikan keberatan dengan menyertakan <strong>nomor pemeriksaan</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion 4: Panduan Petugas -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <div class="accordion-title">
+                        👨‍💼 4. Panduan untuk Petugas KUA
+                    </div>
+                    <div class="accordion-icon">▼</div>
+                </div>
+                <div class="accordion-content">
+                    <h3>📝 4.1 Menginput Data Baru</h3>
+                    <div class="step-box">
+                        <p><span class="step-number">1</span> Buka <strong>Google Spreadsheet</strong> yang sudah dikonfigurasi</p>
+                    </div>
+                    <div class="step-box">
+                        <p><span class="step-number">2</span> Tambahkan <strong>baris baru</strong> di sheet "Data Pengumuman"</p>
+                    </div>
+                    <div class="step-box">
+                        <p><span class="step-number">3</span> Isi semua kolom (A-AC) dengan lengkap</p>
+                    </div>
+                    <div class="step-box">
+                        <p><span class="step-number">4</span> Data akan muncul di website dalam <strong>maksimal 5 menit</strong></p>
+                    </div>
+
+                    <div class="warning-box">
+                        <strong>⚠️ Format Nomor Pemeriksaan:</strong>
+                        <ul>
+                            <li><strong>NPXXXX:</strong> Nomor urut (contoh: NP0001)</li>
+                            <li><strong>3509121:</strong> Kode wilayah</li>
+                            <li><strong>MMYYYY:</strong> Bulan dan Tahun (contoh: 112024)</li>
+                            <li><strong>Contoh lengkap:</strong> <code>NP00013509121112024</code></li>
+                        </ul>
+                    </div>
+
+                    <h3>🔒 4.2 Menyembunyikan Data</h3>
+                    <div class="info-box">
+                        <p>Untuk data yang sudah tidak perlu ditampilkan:</p>
+                        <ul>
+                            <li>Buka Google Spreadsheet</li>
+                            <li>Pada <strong>Kolom A (Status)</strong>, ubah dari <code>TRUE</code> menjadi <code>FALSE</code></li>
+                            <li>Data akan hilang dari website tapi tetap tersimpan</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion 5: Privacy & Keamanan -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <div class="accordion-title">
+                        🔐 5. Sistem Privacy & Keamanan
+                    </div>
+                    <div class="accordion-icon">▼</div>
+                </div>
+                <div class="accordion-content">
+                    <h3>🛡️ 5.1 Konsep Privacy-First</h3>
+                    <div class="privacy-box">
+                        <strong>Prinsip Dasar:</strong>
+                        <ul>
+                            <li>✅ <strong>Minimal Data:</strong> Hanya data yang diperlukan yang ditampilkan</li>
+                            <li>✅ <strong>Protected Information:</strong> TTL disembunyikan secara default</li>
+                            <li>✅ <strong>Secure Access:</strong> TTL hanya untuk pihak berkepentingan</li>
+                            <li>✅ <strong>No Tracking:</strong> Tidak mengumpulkan data pribadi pengunjung</li>
+                            <li>✅ <strong>HTTPS:</strong> Koneksi aman dengan enkripsi</li>
+                        </ul>
+                    </div>
+
+                    <h3>🔒 5.2 Data yang Dilindungi</h3>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Status Default</th>
+                                    <th>Akses</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Nama Calon Pengantin</td>
+                                    <td>✅ Visible</td>
+                                    <td>Semua pengunjung</td>
+                                </tr>
+                                <tr>
+                                    <td>Bin/Binti</td>
+                                    <td>✅ Visible</td>
+                                    <td>Semua pengunjung</td>
+                                </tr>
+                                <tr>
+                                    <td>TTL (Tempat Tanggal Lahir)</td>
+                                    <td>❌ Hidden</td>
+                                    <td>Hanya exact name search</td>
+                                </tr>
+                                <tr>
+                                    <td>Alamat</td>
+                                    <td>✅ Visible</td>
+                                    <td>Semua pengunjung</td>
+                                </tr>
+                                <tr>
+                                    <td>Nomor Pemeriksaan</td>
+                                    <td>✅ Visible</td>
+                                    <td>Tidak dapat dicari</td>
+                                </tr>
+                                <tr>
+                                    <td>Jadwal Akad</td>
+                                    <td>✅ Visible</td>
+                                    <td>Semua pengunjung</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion 6: Troubleshooting -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <div class="accordion-title">
+                        🔧 6. Troubleshooting
+                    </div>
+                    <div class="accordion-icon">▼</div>
+                </div>
+                <div class="accordion-content">
+                    <h3>❌ 6.1 Website Tidak Muncul Data</h3>
+                    <div class="feature-box">
+                        <h4>Kemungkinan Penyebab & Solusi:</h4>
+                        <ul>
+                            <li>
+                                <strong>Tidak ada data dengan Status=TRUE</strong>
+                                <br>→ Periksa kolom A di spreadsheet, pastikan ada data TRUE
+                            </li>
+                            <li>
+                                <strong>URL Web App salah</strong>
+                                <br>→ Cek file js/script.js, pastikan URL benar
+                            </li>
+                            <li>
+                                <strong>Koneksi internet lambat</strong>
+                                <br>→ Tunggu loading selesai atau refresh halaman
+                            </li>
+                            <li>
+                                <strong>Browser cache</strong>
+                                <br>→ Tekan Ctrl+Shift+Delete, hapus cache, lalu refresh
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h3>🔍 6.2 Pencarian Tidak Berfungsi</h3>
+                    <div class="feature-box">
+                        <h4>Solusi:</h4>
+                        <ul>
+                            <li>Pastikan JavaScript enabled di browser</li>
+                            <li>Cek Console (tekan F12) untuk melihat error</li>
+                            <li>Pastikan file js/script.js ter-load dengan benar</li>
+                            <li>Coba refresh halaman (F5 atau Ctrl+R)</li>
+                        </ul>
+                    </div>
+
+                    <h3>👁️ 6.3 TTL Tidak Muncul Saat Search Nama</h3>
+                    <div class="feature-box">
+                        <h4>Solusi:</h4>
+                        <ul>
+                            <li>
+                                <strong>Pastikan nama PERSIS sama</strong>
+                                <br>→ "Ahmad Fauzi" ✅ vs "ahmad fauzi" ✅ (case-insensitive)
+                                <br>→ "Ahmad" ❌ (tidak lengkap)
+                            </li>
+                            <li>
+                                <strong>Cek spasi</strong>
+                                <br>→ Nama dengan spasi ekstra tidak akan match
+                            </li>
+                            <li>
+                                <strong>Clear search dan coba lagi</strong>
+                                <br>→ Hapus teks, ketik ulang dengan hati-hati
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h3>📱 6.4 Tampilan Berantakan di Mobile</h3>
+                    <div class="feature-box">
+                        <h4>Solusi:</h4>
+                        <ul>
+                            <li>Pastikan menggunakan browser modern (Chrome, Firefox, Safari terbaru)</li>
+                            <li>Rotate device jika tampilan portrait terlalu sempit</li>
+                            <li>Zoom out jika tampilan terpotong (pinch gesture)</li>
+                            <li>Update browser ke versi terbaru</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion 7: FAQ -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <div class="accordion-title">
+                        ❓ 7. FAQ (Pertanyaan Umum)
+                    </div>
+                    <div class="accordion-icon">▼</div>
+                </div>
+                <div class="accordion-content">
+                    <h3>💬 7.1 Pertanyaan Umum Masyarakat</h3>
+
+                    <div class="feature-box">
+                        <h4>Q: Apakah SIKEN9 berbayar?</h4>
+                        <p><strong>A:</strong> Tidak, SIKEN9 sepenuhnya <strong>GRATIS</strong> dan dapat diakses 24/7 dari mana saja.</p>
+                    </div>
+
+                    <div class="feature-box">
+                        <h4>Q: Apakah saya perlu registrasi/login?</h4>
+                        <p><strong>A:</strong> Tidak perlu. Website dapat diakses langsung tanpa registrasi atau login.</p>
+                    </div>
+
+                    <div class="feature-box">
+                        <h4>Q: Mengapa TTL saya tidak muncul?</h4>
+                        <p><strong>A:</strong> Untuk privasi, TTL hanya muncul saat Anda mencari dengan <strong>nama lengkap yang persis sama</strong> dengan data yang terdaftar. Ini untuk melindungi data pribadi dari akses tidak berkepentingan.</p>
+                    </div>
+
+                    <div class="feature-box">
+                        <h4>Q: Bisakah saya mencari dengan nomor pemeriksaan?</h4>
+                        <p><strong>A:</strong> Tidak. Nomor pemeriksaan <strong>tidak dapat dicari</strong> untuk melindungi privasi. Gunakan nama atau tanggal untuk pencarian.</p>
+                    </div>
+
+                    <div class="feature-box">
+                        <h4>Q: Data yang saya cari tidak muncul, kenapa?</h4>
+                        <p><strong>A:</strong> Kemungkinan:</p>
+                        <ul>
+                            <li>Data belum diinput oleh petugas KUA</li>
+                            <li>Data sudah disembunyikan (status FALSE)</li>
+                            <li>Ejaan nama salah (pastikan sesuai KTP)</li>
+                            <li>Koneksi internet bermasalah</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-box">
+                        <h4>Q: Bagaimana cara melaporkan data yang salah?</h4>
+                        <p><strong>A:</strong> Klik tombol <strong>"Hubungi WhatsApp KUA Ambulu"</strong> di bagian bawah website dan sampaikan keluhan Anda dengan menyertakan nomor pemeriksaan.</p>
+                    </div>
+
+                    <div class="feature-box">
+                        <h4>Q: Apakah data saya aman?</h4>
+                        <p><strong>A:</strong> Ya. SIKEN9 menerapkan sistem <strong>Privacy-First</strong> dengan TTL default hidden, enkripsi HTTPS, dan tidak mengumpulkan data pribadi pengunjung.</p>
+                    </div>
+
+                    <h3>💼 7.2 Pertanyaan Petugas KUA</h3>
+
+                    <div class="feature-box">
+                        <h4>Q: Bagaimana cara menghapus data?</h4>
+                        <p><strong>A:</strong> Jangan hapus baris untuk keperluan arsip.</p>
+                    </div>
+
+                    <div class="feature-box">
+                        <h4>Q: Berapa lama data update setelah input?</h4>
+                        <p><strong>A:</strong> Maksimal <strong>5 menit</strong> karena ada auto-refresh. Atau user bisa refresh manual.</p>
+                    </div>
+
+                    <div class="feature-box">
+                        <h4>Q: Bisakah mengubah format nomor pemeriksaan?</h4>
+                        <p><strong>A:</strong> Format sudah ditetapkan sesuai peraturan yang berlaku: <code>NPXXXX3509121MMYYYY</code> </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion 8: Kontak -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <div class="accordion-title">
+                        📞 8. Kontak & Dukungan
+                    </div>
+                    <div class="accordion-icon">▼</div>
+                </div>
+                <div class="accordion-content">
+                    <div class="feature-box">
+                        <h4>🏢 Kantor Urusan Agama Kecamatan Ambulu</h4>
+                        <p>
+                            <strong>Alamat:</strong> Jl. Watu Ulo No. 113 Tegalsari, Ambulu, Kab. Jember. 68172<br>
+                            <strong>WhatsApp:</strong> <a href="https://wa.me/6282146035081" target="_blank">082146035081</a><br>
+                            <strong>Email:</strong> kua.ambulu@kemenag.go.id
+                        </p>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>📱 Social Media</h4>
+                        <ul>
+                            <li><strong>Instagram:</strong> <a href="https://www.instagram.com/kuaambulu/" target="_blank">@kuaambulu</a></li>
+                            <li><strong>Facebook:</strong> <a href="https://www.facebook.com/share/1MjeCrXmgN/" target="_blank">KUA Ambulu</a></li>
+                            <li><strong>TikTok:</strong> <a href="https://www.tiktok.com/@kua.ambulu123" target="_blank">@kua.ambulu123</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-box">
+                        <h4>💻 Developer & Technical Support</h4>
+                        <p>
+                            <strong>Developed by:</strong> ZR48<br>
+                            <strong>GitHub Repository:</strong> <a href="https://github.com/kuaambulu/SIKEN9" target="_blank">kuaambulu/SIKEN9</a><br>
+                            <strong>Report Bug:</strong> <a href="https://github.com/kuaambulu/SIKEN9/issues" target="_blank">GitHub Issues</a>
+                        </p>
+                    </div>
+
+                    <div class="warning-box">
+                        <h4>⏰ Jam Layanan</h4>
+                        <p>
+                            <strong>Website SIKEN9:</strong> 24/7 (Selalu Online)<br>
+                            <strong>WhatsApp & Kantor:</strong> Senin-Jumat, 08.00-15.00 WIB<br>
+                            <strong>Hari Libur:</strong> Tutup (kecuali emergency)
+                        </p>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>📝 Form Evaluasi & Monitoring</h4>
+                        <p>Bantu kami meningkatkan layanan dengan memberikan feedback:</p>
+                        <a href="https://kuaambulu.github.io/SIKEN9/Evaluasi/form-evaluasi-siken9.html" target="_blank" class="btn btn-primary">
+                            📝 Isi Form Evaluasi
+                        </a>
+                    </div>
+
+                    <div style="text-align: center; margin: 40px 0;">
+                        <a href="https://kuaambulu.github.io/SIKEN9/index.html" target="_blank" class="btn" style="font-size: 1.2em;">
+                            🌐 Buka SIKEN9 Sekarang
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Penutup -->
+            <div style="text-align: center; padding: 40px 20px; background: #f5f5f5; border-radius: 10px; margin-top: 40px;">
+                <h3 style="color: #1b5e20; margin-bottom: 15px;">✨ Terima Kasih</h3>
+                <p style="color: #666; line-height: 1.8;">
+                    Panduan ini dibuat untuk membantu Anda menggunakan SIKEN9 dengan optimal.<br>
+                    Jika ada pertanyaan atau kendala, jangan ragu untuk menghubungi kami.<br>
+                    <strong>Mari bersama tingkatkan pelayanan pernikahan yang lebih baik!</strong>
+                </p>
+                <div style="margin-top: 20px;">
+                    <span style="font-size: 2em;">🤝</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p style="margin-bottom: 10px;"><strong>© 2025 Kantor Urusan Agama Kecamatan Ambulu</strong></p>
+            <p style="margin-bottom: 10px;">Kabupaten Jember, Jawa Timur</p>
+            <p style="font-size: 0.9em; opacity: 0.9;">Dikembangkan dengan ❤️ oleh <strong>ZR48</strong></p>
+            <p style="font-size: 0.85em; margin-top: 15px; opacity: 0.8;">
+                Panduan SIKEN9 v2.3 | Terakhir diperbarui: November 2025
+            </p>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <a href="#" class="scroll-top" id="scrollTop">↑</a>
+
+    <script>
+        // Toggle individual accordion
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const isActive = header.classList.contains('active');
+            
+            // Close all accordions
+            document.querySelectorAll('.accordion-header').forEach(h => {
+                h.classList.remove('active');
+            });
+            document.querySelectorAll('.accordion-content').forEach(c => {
+                c.classList.remove('active');
+            });
+            
+            // If clicked accordion was not active, open it
+            if (!isActive) {
+                header.classList.add('active');
+                content.classList.add('active');
+            }
+        }
+
+        // Smooth scroll untuk anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll to top button
+        const scrollTop = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTop.style.display = 'flex';
+            } else {
+                scrollTop.style.display = 'none';
+            }
+        });
+
+        scrollTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Open first accordion by default
+        window.addEventListener('DOMContentLoaded', () => {
+            const firstHeader = document.querySelector('.accordion-header');
+            const firstContent = document.querySelector('.accordion-content');
+            if (firstHeader && firstContent) {
+                firstHeader.classList.add('active');
+                firstContent.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
